@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom'
 
-export function Images( { photos } ) {
+export function ImagesPixabay( { photos } ) {
     const navigate = useNavigate();
 
     const PageImage = (photo) => {

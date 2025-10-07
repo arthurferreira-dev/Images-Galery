@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Images } from "./components/Images";
+import { ImagesPixabay } from "./components/images";
 import { MyFooter } from "./components/Footer"; 
 import { Camera } from 'lucide-react';
 
@@ -34,7 +34,7 @@ export default function App() {
       <div
         className="grid grid-cols-4 max-[657px]:grid-cols-2 max-[810px]:grid-cols-3 min-[1114px]:grid-cols-4 gap-6 items-start justify-center mx-auto mt-4 bg-zinc-400 p-5 shadow"
       >
-        <Images photos={photos}/>
+        <ImagesPixabay photos={photos}/>
       </div>
       <MyFooter/>
     </>
