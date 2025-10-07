@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { Images } from "./components/images";
+import { MyFooter } from "./components/Footer"; 
 import { Camera } from 'lucide-react';
 
 export default function App() {
@@ -12,7 +13,6 @@ export default function App() {
     const res = await fetch(url);
     const json = await res.json();
     setPhotos(json.hits);
-    return json.hits;
   };
 
   useEffect(() => {
@@ -36,6 +36,7 @@ export default function App() {
       >
         <Images photos={photos}/>
       </div>
+      <MyFooter/>
     </>
   );
 }
