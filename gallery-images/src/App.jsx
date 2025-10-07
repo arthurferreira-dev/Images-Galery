@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { ImagesPixabay } from "./components/images.jsx";
+import { ImagesPixabay } from "./components/Images.jsx";
 import { MyFooter } from "./components/Footer"; 
 import { Camera } from 'lucide-react';
 
