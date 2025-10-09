@@ -1,6 +1,7 @@
-import { ChevronLeftIcon, Eye, ThumbsUp, Download } from "lucide-react";
+import { useState } from "react";
 import { useSearchParams, useNavigate } from "react-router-dom";
 import { MyFooter } from "./Footer";
+import { ChevronLeftIcon, Eye, ThumbsUp, Download, ArrowDownToLine } from "lucide-react";
 
 export default function PageImage() {
     const [searchParams] = useSearchParams();
@@ -10,6 +11,7 @@ export default function PageImage() {
     const likes = searchParams.get('likes');
     const views = searchParams.get('views');
     const downloads = searchParams.get('downloads');
+    const [loading, setLoading] = useState(false);
 
     const navigate = useNavigate();
     const navigator = (pageURL) => {
@@ -21,6 +23,30 @@ export default function PageImage() {
             <li className="flex gap-2 items-center">{children}</li>
         );
     }
+
+    const DowloandImg = async (imageURL) => {
+        setLoading(true)
+
+        try {
+            const res = await fetch(imageURL);
+            const bob = await res.blob();
+            const urlBob = URL.createObjectURL(bob);
+    
+            const link = document.createElement('a');
+            link.href = urlBob
+            link.download = `${user}-pixabay.jpg`
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            URL.revokeObjectURL(urlBob);
+        } catch (error) {
+            console.error('Error ao baixar a imagem:', error);
+        } finally {
+            setLoading(false)
+        }
+    }
+
+    const ButtonsCL = 'flex justify-center items-center text-xl font-alan gap-2 p-2 w-[150px] rounded-md duration-300 hover:cursor-pointer'
 
     return (
         <>
@@ -36,7 +62,27 @@ export default function PageImage() {
                 </ul>
                 <div className="flex justify-center my-3">
                     <button
-                        className="flex justify-center items-center text-xl font-alan gap-2 bg-green-500 p-2 w-[150px] rounded-md duration-300 hover:bg-green-600 hover:cursor-pointer"
+                        className={`${ButtonsCL} bg-sky-500 hover:bg-sky-600`}
+                        onClick={() => DowloandImg(src)}
+                    >
+                        {loading ? (
+                            <span className="flex items-center gap-2">
+                                <svg className="animate-spin h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                                    <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
+                                    <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z" />
+                                </svg>
+                                Carregando...
+                            </span>
+                        ) : (
+                            <>
+                                <ArrowDownToLine/> Baixar Imagem
+                            </>
+                        )}
+                    </button>
+                </div>
+                <div className="flex justify-center my-3">
+                    <button
+                        className={`${ButtonsCL} bg-green-500 hover:bg-green-600`}
                         onClick={() => navigate(-1)}
                     >
                         <ChevronLeftIcon/> Voltar
