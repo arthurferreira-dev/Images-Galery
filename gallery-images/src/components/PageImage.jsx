@@ -47,13 +47,21 @@ export default function PageImage() {
     }
 
     const ButtonsCL = 'flex justify-center items-center text-xl font-alan gap-2 p-2 w-[150px] rounded-md duration-300 hover:cursor-pointer'
+    const SVGcircle = () => {
+        return (
+            <svg className="animate-spin h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
+                <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z" />
+            </svg>
+        );
+    }
 
     return (
         <>
             <div className="w-[500px] max-[501px]:w-[100%] mx-auto bg-gray-400 border-3 border-black min-[540px]:rounded-lg p-4 space-y-3 font-alan">
-                <img src={src} alt={`creator-${user}`} className="rounded-md shadow hover:cursor-pointer" onClick={() => navigator(pageURL)} />
-                <h2 className="text-center text-xl">
-                    <strong className="font-bold">Criado por:</strong> {user}
+                <img src={src} alt={`creator-${user}`} className="rounded-md shadow block mx-auto hover:cursor-pointer" />
+                <h2 className="text-center text-xl" onClick={() => navigator(pageURL)}>
+                    <strong className="font-bold">Criado por:</strong> <span className="hover:underline hover:cursor-pointer">{user}</span>
                 </h2>
                 <ul className="text-center text-lg flex flex-col flex-wrap items-center gap-3">
                     <Lis><ThumbsUp/> {likes}</Lis>
@@ -67,10 +75,7 @@ export default function PageImage() {
                     >
                         {loading ? (
                             <span className="flex items-center gap-2">
-                                <svg className="animate-spin h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                                    <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
-                                    <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z" />
-                                </svg>
+                                <SVGcircle/>
                                 Carregando...
                             </span>
                         ) : (
