@@ -8,6 +8,7 @@ export function ImagesPixabay( { photos } ) {
         query.set('src', photo.webformatURL);
         query.set('pageURL', photo.pageURL);
         query.set('user', photo.user);
+        query.set('userID', photo.user_id);
         query.set('likes', photo.likes);
         query.set('views', photo.views);
         query.set('downloads', photo.downloads);

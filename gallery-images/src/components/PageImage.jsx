@@ -8,6 +8,7 @@ export default function PageImage() {
     const src = searchParams.get('src');
     const pageURL = searchParams.get('pageURL');
     const user = searchParams.get('user');
+    const userID = searchParams.get('userID');
     const likes = searchParams.get('likes');
     const views = searchParams.get('views');
     const downloads = searchParams.get('downloads');
@@ -59,9 +60,9 @@ export default function PageImage() {
     return (
         <>
             <div className="w-[500px] max-[501px]:w-[100%] mx-auto bg-gray-400 border-3 border-black min-[540px]:rounded-lg p-4 space-y-3 font-alan">
-                <img src={src} alt={`creator-${user}`} className="rounded-md shadow block mx-auto hover:cursor-pointer" />
-                <h2 className="text-center text-xl" onClick={() => navigator(pageURL)}>
-                    <strong className="font-bold">Criado por:</strong> <span className="hover:underline hover:cursor-pointer">{user}</span>
+                <img src={src} alt={`creator-${user}`} className="rounded-md shadow block mx-auto hover:cursor-pointer" onClick={() => navigator(pageURL)} />
+                <h2 className="text-center text-xl">
+                    <strong className="font-bold">Criado por:</strong> <span className="hover:underline hover:cursor-pointer" onClick={() => navigator(`https://pixabay.com/users/${user}-${userID}`)}>{user}</span>
                 </h2>
                 <ul className="text-center text-lg flex flex-col flex-wrap items-center gap-3">
                     <Lis><ThumbsUp/> {likes}</Lis>
